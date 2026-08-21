@@ -13,7 +13,7 @@ archive/
 
 ### `production`
 
-Only final release artifacts that have passed Developer ID signing, Apple notarization, stapling and Gatekeeper verification belong here.
+Developer-ID-signed and Apple-notarized production-line artifacts belong here. A build that is later superseded by additional hardening remains archived for traceability but must contain a local README that clearly marks it as superseded and not current production.
 
 Expected metadata:
 
@@ -23,6 +23,7 @@ Expected metadata:
 - `source-commit.txt`
 - `update-manifest.json` when available
 - `archive-metadata.json` for entries created by the archive helper
+- status README when the build is superseded
 
 ### `e2e`
 
@@ -43,13 +44,13 @@ Do not store local filesystem paths, private signing keys, Apple credentials, Gi
 From a local clone on macOS:
 
 ```bash
-scripts/archive-local-dmg.sh \
+bash scripts/archive-local-dmg.sh \
   production \
   1.0.0 \
-  36 \
+  38 \
   /path/to/NeuralPilot-1.0.0.dmg \
   --notary /path/to/notary-result.json \
-  --source-commit 49ddced8bf9b6d3268ccebf3b68edb5369ab82d3 \
+  --source-commit CURRENT_RELEASE_SHA \
   --manifest /path/to/update-manifest.json \
   --push
 ```
