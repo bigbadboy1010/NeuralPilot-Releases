@@ -15,12 +15,12 @@ Each GitHub Release may contain only:
 
 In addition to GitHub Release assets, signed DMGs are retained under `archive/` for traceability:
 
-- `archive/production/<version>/build-<build>/` — production releases;
+- `archive/production/<version>/build-<build>/` — signed/notarized production-line artifacts; superseded candidates are explicitly marked in their local README;
 - `archive/e2e/<version>/build-<build>/` — explicitly non-production updater/rollback acceptance builds.
 
 All `*.dmg` archive files are stored through Git LFS. Portable SHA-256 files, source-commit metadata and notarization evidence are kept alongside production artifacts when available. See `archive/README.md`.
 
-Future local archives can be created with `scripts/archive-local-dmg.sh`, which re-checks codesign, stapling and Gatekeeper before committing an artifact.
+Future local archives can be created with `bash scripts/archive-local-dmg.sh`, which re-checks codesign, stapling and Gatekeeper before committing an artifact.
 
 ## Trust model
 
